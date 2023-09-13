@@ -1,0 +1,4 @@
+.git
+tmp/
+go.mod
+.air.toml
