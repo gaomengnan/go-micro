@@ -15,4 +15,7 @@ drop_db:
 postgres:
 	docker run --name postgres -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=123456 -d postgres
 
+sqlc:
+	sqlc generate
+
 .PHONY: postgres createdb dropdb
