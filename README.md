@@ -13,7 +13,7 @@ $ curl -L https://github.com/golang-migrate/migrate/releases/download/$version/m
 ```
 
 # hot reload
-https://github.com/cosmtrek/air
+- [Github](https://github.com/cosmtrek/air)
 
 ### Go
 ```shell
