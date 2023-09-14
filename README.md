@@ -48,4 +48,10 @@ sudo snap install sqlc
 ```shell
 go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
 ```
+## windows
 
+can run sqlc inside docker container
+
+```shell
+docker run --rm -v $(pwd):/src -w /src kjconroy/sqlc generate
+```
