@@ -15,7 +15,15 @@ func main() {
 	}
 
 	http.HandleFunc("/home", func(w http.ResponseWriter, r *http.Request) {
-		log.Println("test")
+		go func() {
+			ctx := r.Context()
+			for {
+				<-ctx.Done()
+				log.Println("connection closed")
+				break
+			}
+		}()
+
 		fmt.Fprintf(w, "hello")
 	})
 	log.Println("web server started: " + port)
