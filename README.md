@@ -1,5 +1,6 @@
 # database migrate
-github https://github.com/golang-migrate/migrate
+-  [Github](https://github.com/golang-migrate/migrate)
+-  [Documentation](https://docs.sqlc.dev)
 
 ### macos
 ```shell
@@ -12,8 +13,7 @@ $ curl -L https://github.com/golang-migrate/migrate/releases/download/$version/m
 ```
 
 # hot reload
-
-github https://github.com/cosmtrek/air
+https://github.com/cosmtrek/air
 
 ### Go
 ```shell
@@ -32,25 +32,24 @@ air -v
 ```
 
 # sql manager
-github https://github.com/sqlc-dev/sqlc
-
-document https://docs.sqlc.dev/en/latest/overview/install.html
-### macOS
+- [Github](https://github.com/sqlc-dev/sqlc)
+- [Documentation](https://docs.sqlc.dev/en/latest/overview/install.html)
+### macOS
 ```shell
 brew install sqlc
 ```
-### Ubuntu
+### Ubuntu
 ```shell
 sudo snap install sqlc
 ```
-### go install
+### go install
 
 ```shell
 go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
 ```
-## windows
+### windows
 
-can run sqlc inside docker container
+- can run sqlc inside docker container
 
 ```shell
 docker run --rm -v $(pwd):/src -w /src kjconroy/sqlc generate
