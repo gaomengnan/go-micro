@@ -19,6 +19,8 @@ func main() {
 		fmt.Fprintf(w, "hello")
 	})
 	log.Println("web server started: " + port)
-	http.ListenAndServe(":"+port, nil)
-
+	err := http.ListenAndServe(":"+port, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
 }

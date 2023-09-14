@@ -1,5 +1,5 @@
 default:
-	@go build -o ./tmp/main  . && ./tmp/main && rm -rf ./tmp/main
+	@go build -o ./tmp/main  . && ./tmp/main
 create_db:
 	docker exec -it postgres createdb --username=root --owner=root simple_bank
 
