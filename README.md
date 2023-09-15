@@ -55,3 +55,8 @@ go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
 ```shell
 docker run --rm -v $(pwd):/src -w /src kjconroy/sqlc generate
 ```
+
+# Testing
+
+- [Github](https://github.com/stretchr/testify)
+
