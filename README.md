@@ -1,4 +1,4 @@
-# database migrate
+# Database migrate
 -  [Github](https://github.com/golang-migrate/migrate)
 -  [Documentation](https://docs.sqlc.dev)
 
@@ -12,7 +12,7 @@ $ brew install golang-migrate
 $ curl -L https://github.com/golang-migrate/migrate/releases/download/$version/migrate.$os-$arch.tar.gz | tar xvz
 ```
 
-# hot reload
+# Hot reload
 - [Github](https://github.com/cosmtrek/air)
 
 ### Go
@@ -31,7 +31,8 @@ curl -sSfL https://raw.githubusercontent.com/cosmtrek/air/master/install.sh | sh
 air -v
 ```
 
-# sql manager
+# SQL manager
+
 - [Github](https://github.com/sqlc-dev/sqlc)
 - [Documentation](https://docs.sqlc.dev/en/latest/overview/install.html)
 ### macOS
