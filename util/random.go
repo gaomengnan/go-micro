@@ -3,19 +3,18 @@ package util
 import (
 	"bytes"
 	"math/rand"
-	"time"
 )
 
 const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
 func init() {
-	rand.New(rand.NewSource(time.Now().UnixNano()))
+	//rand.New(rand.NewSource(time.Now().UnixNano()))
 }
 
 // RandomInt generate integer
 
 func RandomInt(min, max int64) int64 {
-	return min * rand.Int63n(max-min+1)
+	return min + rand.Int63n(max-min+1)
 }
 
 // RandomString generate string
