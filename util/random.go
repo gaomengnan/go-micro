@@ -3,12 +3,13 @@ package util
 import (
 	"bytes"
 	"math/rand"
+	"time"
 )
 
 const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
 func init() {
-	//rand.New(rand.NewSource(time.Now().UnixNano()))
+	rand.New(rand.NewSource(time.Now().UnixNano()))
 }
 
 // RandomInt generate integer
