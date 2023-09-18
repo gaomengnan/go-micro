@@ -53,14 +53,14 @@ type TransferTxResult struct {
 func (store *Store) TransferTx(ctx context.Context, arg TransferTxParams) (TransferTxResult, error) {
 
 	var result TransferTxResult
-
+	createTransferArg := CreateTransferParams{
+		FromAccountID: arg.FromAccountID,
+		ToAccountID:   arg.ToAccountID,
+		Amount:        arg.Amount,
+	}
 	err := store.execTx(ctx, func(q *Queries) error {
 		var err error
-		result.Transfer, err = q.CreateTransfer(ctx, CreateTransferParams{
-			FromAccountID: arg.FromAccountID,
-			ToAccountID:   arg.ToAccountID,
-			Amount:        arg.Amount,
-		})
+		result.Transfer, err = q.CreateTransfer(ctx, createTransferArg)
 
 		if err != nil {
 			return err
