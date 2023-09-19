@@ -13,3 +13,4 @@ sql:
         emit_exact_table_names: true
         emit_interface: true
         emit_prepared_queries: false
+        emit_empty_slices: true

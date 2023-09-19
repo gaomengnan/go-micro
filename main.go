@@ -1,34 +1,32 @@
 package main
 
 import (
-	"fmt"
+	"database/sql"
 	"log"
-	"net/http"
-	"os"
+
+	"github.com/gaomengnan/go-micro/api"
+	db "github.com/gaomengnan/go-micro/db/sqlc"
+	_ "github.com/lib/pq"
+)
+
+const (
+	dbDriver      = "postgres"
+	dbSource      = "postgresql://root:123456@localhost/b_micro?sslmode=disable"
+	serverAddress = "0.0.0.0:8081"
 )
 
 func main() {
-	port := os.Getenv("PORT")
-
-	if port == "" {
-		port = "8080"
+	conn, err := sql.Open(dbDriver, dbSource)
+	if err != nil {
+		log.Fatal("cannot connect to db:", err)
 	}
 
-	http.HandleFunc("/home", func(w http.ResponseWriter, r *http.Request) {
-		go func() {
-			ctx := r.Context()
-			for {
-				<-ctx.Done()
-				log.Println("connection closed")
-				break
-			}
-		}()
+	store := db.NewStore(conn)
 
-		fmt.Fprintf(w, "hello")
-	})
-	log.Println("web server started: " + port)
-	err := http.ListenAndServe(":"+port, nil)
+	server := api.NewServer(store)
+	err = server.Start(serverAddress)
+
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("cannot start server:", err)
 	}
 }

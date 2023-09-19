@@ -23,4 +23,9 @@ test:
 
 test_func:
 	go test -v  -test.run $(FUNC) ./...
+
+
+server:
+	go run main.go
+
 .PHONY: postgres dropdb create_db   migrate_down migrate_up sqlc test
