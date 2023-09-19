@@ -21,4 +21,6 @@ sqlc:
 test:
 	go test -v -cover ./...
 
+test_func:
+	go test -v  -test.run $(FUNC) ./...
 .PHONY: postgres dropdb create_db   migrate_down migrate_up sqlc test
