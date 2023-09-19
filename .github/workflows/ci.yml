@@ -12,8 +12,27 @@ on:
 jobs:
 
   build:
-    name: Build
+    name: Build go-micro
     runs-on: ubuntu-latest
+    # Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres:12
+        # Provide the password for postgres
+        env:
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: 123456
+          POSTGRES_DB: b_micro
+
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
     - uses: actions/checkout@v3
 
@@ -23,6 +42,8 @@ jobs:
         go-version: '1.20'
       id: go
 
+    - name: Run migration
+      run: make migrate_up
 
     - name: Test
       run: make test
