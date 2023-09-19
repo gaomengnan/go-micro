@@ -60,3 +60,20 @@ docker run --rm -v $(pwd):/src -w /src kjconroy/sqlc generate
 
 - [Github](https://github.com/stretchr/testify)
 
+# Mock API
+
+- Install mockgen
+
+```
+
+go install go.uber.org/mock/mockgen@latest
+
+```
+- Create mock file
+```
+
+make mock
+
+```
+
+go get github.com/golang/mock
