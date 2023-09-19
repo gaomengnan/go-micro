@@ -28,4 +28,7 @@ test_func:
 server:
 	go run main.go
 
+mock:
+	mockgen -package mockdb -destination db/mock/store.go github.com/gaomengnan/go-micro/db/sqlc Store
+
 .PHONY: postgres dropdb create_db   migrate_down migrate_up sqlc test
