@@ -59,7 +59,6 @@ func (server *Server) getAccount(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, errorResponse(err))
 		return
 	}
-
 	ctx.JSON(http.StatusOK, account)
 }
 

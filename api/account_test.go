@@ -1,7 +1,10 @@
 package api
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -14,8 +17,32 @@ import (
 )
 
 func TestGetAccountAPI(t *testing.T) {
-
 	account := randomAccount()
+
+	testCases := []struct {
+		name          string
+		accountID     int64
+		buildStubs    func(store *mockdb.MockStore)
+		checkResponse func(t *testing.T, recorder *httptest.ResponseRecorder)
+	}{
+		{
+			name:      "OK",
+			accountID: account.ID,
+			buildStubs: func(store *mockdb.MockStore) {
+				store.EXPECT().
+					GetAccount(gomock.Any(), gomock.Eq(account.ID)).
+					Times(1).
+					Return(account, nil)
+			},
+
+			checkResponse: func(t *testing.T, recorder *httptest.ResponseRecorder) {
+				require.Equal(t, http.StatusOK, recorder.Code)
+				requireBodyMatchAccount(t, recorder.Body, account)
+			},
+		},
+	}
+
+	_ = testCases
 
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
@@ -39,6 +66,8 @@ func TestGetAccountAPI(t *testing.T) {
 	server.router.ServeHTTP(recorder, request)
 
 	require.Equal(t, http.StatusOK, recorder.Code)
+
+	requireBodyMatchAccount(t, recorder.Body, account)
 }
 
 func randomAccount() db.Accounts {
@@ -50,4 +79,13 @@ func randomAccount() db.Accounts {
 		Currency: util.RandomCurrency(),
 	}
 
+}
+
+func requireBodyMatchAccount(t *testing.T, body *bytes.Buffer, account db.Accounts) {
+	data, err := io.ReadAll(body)
+	require.NoError(t, err)
+	var gotAccount db.Accounts
+	err = json.Unmarshal(data, &gotAccount)
+	require.NoError(t, err)
+	require.Equal(t, account, gotAccount)
 }
