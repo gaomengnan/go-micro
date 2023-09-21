@@ -12,13 +12,15 @@ import (
 
 func createRandomTransfer(t *testing.T) Transfers {
 
+	user := createRandomUser(t)
 	fromArg := CreateAccountParams{
-		Owner:    util.RandomOwner(),
+		Owner:    user.Username,
 		Balance:  util.RandomMoney(),
 		Currency: util.RandomCurrency(),
 	}
+	toUser := createRandomUser(t)
 	toArg := CreateAccountParams{
-		Owner:    util.RandomOwner(),
+		Owner:    toUser.Username,
 		Balance:  util.RandomMoney(),
 		Currency: util.RandomCurrency(),
 	}
