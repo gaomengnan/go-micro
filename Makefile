@@ -7,8 +7,14 @@ create_db:
 migrate_up:
 	migrate -path db/migration -database "postgresql://root:123456@localhost/b_micro?sslmode=disable" -verbose up
 
+migrate_up_1:
+	migrate -path db/migration -database "postgresql://root:123456@localhost/b_micro?sslmode=disable" -verbose up 1
+
 migrate_down:
 	migrate -path db/migration -database "postgresql://root:123456@localhost/b_micro?sslmode=disable" -verbose down
+
+migrate_down_1:
+	migrate -path db/migration -database "postgresql://root:123456@localhost/b_micro?sslmode=disable" -verbose down 1
 
 drop_db:
 	docker exec -it postgres dropdb b_micro
