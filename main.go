@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 
 	"github.com/gaomengnan/go-micro/api"
@@ -15,6 +16,7 @@ func main() {
 	config, err := util.LoadConfig(".")
 
 	if err != nil {
+		fmt.Println("err:%v", err)
 		log.Fatal(err)
 	}
 
