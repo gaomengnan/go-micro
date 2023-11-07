@@ -2,7 +2,7 @@
 -  [Github](https://github.com/golang-migrate/migrate)
 -  [Documentation](https://docs.sqlc.dev)
 
-### macos
+### macos system
 ```shell
 $ brew install golang-migrate
 ```
