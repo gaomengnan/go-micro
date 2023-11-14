@@ -20,7 +20,7 @@ drop_db:
 	docker exec -it postgres dropdb b_micro
 
 postgres:
-	docker run --name postgres -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=123456 -e TZ=Asia/Shanghai -d postgres
+	docker run --network bank-network --name postgres -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=123456 -e TZ=Asia/Shanghai -d postgres
 
 sqlc:
 	sqlc generate
